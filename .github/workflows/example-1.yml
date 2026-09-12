@@ -1,7 +1,7 @@
 name: Variables for docker with secrets
 on: push
 env:
-    dockerusername: bhaskar0516
+    
     image_name: nginx3
 jobs:
   build-job:
