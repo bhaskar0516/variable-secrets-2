@@ -1,7 +1,7 @@
 name: Variables for docker with secrets and vars
 on: push
 env:
-    CONTAINER_REGISTRY: docker_io
+    CONTAINER_REGISTRY: docker.io
     image_name: nginx516
 jobs:
   build-job:
