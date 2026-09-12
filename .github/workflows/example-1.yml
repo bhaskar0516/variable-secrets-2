@@ -1,0 +1,29 @@
+name: Variables for docker with secrets
+on: push
+env:
+    dockerusername: bhaskar0516
+    image_name: nginx3
+jobs:
+  build-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: artifacts
+        uses: actions/checkout@v4
+
+      - name: Docker build
+        run: docker build -t ${{ vars.dockerusername }}/${{ env.image_name }}:latest .
+
+      - name: Docker logins
+     
+        run: docker login --username=${{ vars.dockerusername }} --password=${{ secrets.docker_password }}
+
+      - name: Docker publish
+        run: docker push ${{ vars.dockerusername }}/${{ env.image_name }}:latest
+
+  deploy-job:
+    needs: build-job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker deploy
+        run: docker run -d -p 8080:80 ${{ vars.dockerusername }}/${{ env.image_name }}:latest
+      
