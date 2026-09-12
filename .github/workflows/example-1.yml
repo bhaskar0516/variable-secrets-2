@@ -17,7 +17,8 @@ jobs:
         run: docker login --username=${{ vars.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker publish
-        run: docker push ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/${{ env.image_name }}:latest
+        run: docker push ${{ vars.dockerusername }}/${{ env.image_name }}:latest
+        # run: docker push ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/${{ env.image_name }}:latest
 
   deploy-job:
     needs: build-job
