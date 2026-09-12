@@ -1,4 +1,4 @@
-name: Variables for docker with secrets
+name: Variables for docker with secrets and vars
 on: push
 env:
     
